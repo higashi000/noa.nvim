@@ -13,13 +13,6 @@ class Noa(object):
     def __del__(self):
         self.ws.close()
 
-    @neovim.command('NoaSend', nargs = '*')
-    def NoaWSSend(self, args):
-        if (len(args) > 0):
-            self.ws.send(args[0])
-            result = self.ws.recv()
-            self.nvim.command('echo "%s"' % result)
-
     @neovim.function('NoaWSRECV', sync = False)
     def NoaWSRECV(self, args):
         while True:
