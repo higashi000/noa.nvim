@@ -1,8 +1,8 @@
-import neovim
+import pynvim
 import random
 import websocket
 
-@neovim.plugin
+@pynvim.plugin
 class Noa(object):
 
     def __init__(self, nvim):
@@ -13,13 +13,14 @@ class Noa(object):
     def __del__(self):
         self.ws.close()
 
-    @neovim.function('NoaWSRECV', sync = False)
+    @pynvim.function('NoaWSRECV', sync = False)
     def NoaWSRECV(self, args):
+        self.nvim.call("noa#InitClient")
         while True:
             result = self.ws.recv()
-            self.nvim.command('echo "%s"' % result)
+            self.nvim.call("noa#insertText", result)
 
-    @neovim.function('NoaTestFunction', sync=False)
+    @pynvim.function('NoaTestFunction', sync=False)
     def NoaTestFunc(self, args):
         if (len(args) > 0):
             argsIndex = random.randrange(len(args) - 1)
@@ -27,7 +28,7 @@ class Noa(object):
         else :
             self.nvim.command('echo "Nothing args"')
 
-    @neovim.command('NoaTestCommand', nargs = '*')
+    @pynvim.command('NoaTestCommand', nargs = '*')
     def NoaTestCmd(self, args):
         if (len(args) > 0):
             argsIndex = random.randrange(len(args) - 1)
