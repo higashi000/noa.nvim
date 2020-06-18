@@ -5,7 +5,7 @@ function! noa#postMsg()
    let l:cursorPos = line(".")
    let l:lineText = getline('.')
 
-   let l:cmdStr = 'curl '.g:serverURL.'/send'.' -X POST -H "Content-Type: application/json" -d "{\"text\": \"'.l:lineText.'\", \"line\":'.l:cursorPos.', \"uuid\":\"'.g:noaUUID.'\"}"'
+   let l:cmdStr = 'curl '.g:serverURL.'/send'.' -X POST -H "Content-Type: application/json" -d "{\"text\": \"'.l:lineText.'\", \"line\":'.l:cursorPos.', \"uuid\":\"'.g:noaUUID.'\", \"roomid\": \"'.g:noaRoomID.'\"}"'
    echo l:cmdStr
 
    let res = system(l:cmdStr)
@@ -27,6 +27,10 @@ function! noa#insertText(recvJSON)
    if (textData['uuid'] != g:noaUUID)
       call append(textData['line'] - 1, textData['text'])
    endif
+endfunction
+
+function! noa#setRoomID(roomID)
+    let g:noaRoomID = a:roomID
 endfunction
 
 let &cpo = s:save_cpo
