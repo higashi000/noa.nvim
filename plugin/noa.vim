@@ -12,5 +12,18 @@ let g:noaRoomID = ''
 
 command! NoaPostMsg call noa#postMsg()
 
+augroup NoaInput
+   autocmd!
+   autocmd TextChangedI * call noa#text_chane_i()
+augroup END
+
+function! noa#text_chane_i() abort
+   let l:pos = getpos('.')
+   let l:lineText = getline('.')
+
+"   echo l:pos
+   echo l:lineText[l:pos[2] - 2]
+endfunction
+
 let &cpo = s:save_cpo
 unlet s:save_cpo
