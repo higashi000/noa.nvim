@@ -1,7 +1,7 @@
 let s:save_cpo = &cpo
 set cpo&vim
 
-function! noa#postMsg()
+function! noa#postMsg() abort
    let l:cursorPos = line(".")
    let l:lineText = getline('.')
 
@@ -11,13 +11,13 @@ function! noa#postMsg()
    let res = system(l:cmdStr)
 endfunction
 
-function! noa#InitClient()
+function! noa#InitClient() abort
    let res = system('curl -s '.g:serverURL.'/init')
 
    let g:noaUUID = res
 endfunction
 
-function! noa#insertText(recvJSON)
+function! noa#insertText(recvJSON) abort
    let s:V = vital#noa#new()
    let s:J = s:V.import('Web.JSON')
 
@@ -29,7 +29,7 @@ function! noa#insertText(recvJSON)
    endif
 endfunction
 
-function! noa#setRoomID(roomID)
+function! noa#setRoomID(roomID) abort
     let g:noaRoomID = a:roomID
 endfunction
 
