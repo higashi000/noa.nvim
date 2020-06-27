@@ -40,5 +40,12 @@ function! noa#text_chane_i() abort
    echo l:lineText[l:pos[2] - 2]
 endfunction
 
+function! noa#getBufferText() abort
+   let l:fileLineLen = line('$')
+
+   let l:bufferText = getline(1, l:fileLineLen)
+   let l:cmdStr = 'curl '.g:serverURL.'/send'.' -X POST -H "Content-Type: application/json" -d "{\"text\": \"'.l:bufferText.'\", \"line\":'.l:cursorPos.', \"uuid\":\"'.g:noaUUID.'\", \"roomid\": \"'.g:noaRoomID.'\"}"'
+endfunction
+
 let &cpo = s:save_cpo
 unlet s:save_cpo
