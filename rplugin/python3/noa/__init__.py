@@ -18,14 +18,14 @@ class Noa(object):
             self.nvim.command('echo "Please attachment room id."')
             return
         self.ws = websocket.create_connection("ws://localhost:5000/channel/{}/ws".format(args[0]))
-        self.nvim.call('noa#setRoomID', args[0])
+        self.nvim.call('noa#setup#setRoomID', args[0])
 
     @pynvim.function('NoaWSRECV', sync = False)
     def noa_ws_recv(self, args):
-        self.nvim.call("noa#InitClient")
+        self.nvim.call("noa#setup#InitClient")
         while True:
             result = self.ws.recv()
-            self.nvim.call("noa#insertText", result)
+            self.nvim.call("noa#insert#insertText", result)
 
     @pynvim.function('NoaTestFunction', sync=False)
     def NoaTestFunc(self, args):
