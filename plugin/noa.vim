@@ -12,6 +12,11 @@ let g:noaRoomID = ''
 
 command! NoaPostMsg call noa#postMsg()
 
+function! noa#start(roomid) abort
+   call NoaCreateConn(a:roomid)
+   call NoaWSRECV()
+endfunction
+
 augroup NoaInput
    autocmd!
    autocmd TextChangedI * call noa#text_chane_i()
