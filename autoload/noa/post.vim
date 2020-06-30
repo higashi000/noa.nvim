@@ -1,4 +1,4 @@
-function! noa#send#postMsg() abort
+function! noa#post#postMsg() abort
    let l:cursorPos = line(".")
    let l:lineText = getline('.')
 
@@ -8,7 +8,7 @@ function! noa#send#postMsg() abort
    let res = system(l:cmdStr)
 endfunction
 
-function! noa#send#getBufferText() abort
+function! noa#post#getBufferText() abort
    let l:fileLineLen = line('$')
 
    let l:bufferText = getline(1, l:fileLineLen)
