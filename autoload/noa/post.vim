@@ -8,23 +8,18 @@ function! noa#post#postMsg() abort
    let res = system(l:cmdStr)
 endfunction
 
-function! noa#post#getBufferText() abort
-   let l:fileLineLen = line('$')
+function! noa#post#sendBufferText() abort
+   let l:fileText = noa#gettext#getBufferText()
 
-   let l:bufferText = getline(1, l:fileLineLen)
-   let l:linkBufText = '[\"START\"'
+   let l:sendCmd = 'curl '.g:serverURL.'/send '
+      \ .'-X POST -H "Content-Type: application/json" '
+      \ .'-d '
+      \ .'"{'
+      \ .'\"text\":'.l:fileText
+      \ .', \"line\":2,'
+      \ .' \"uuid\":\"'.g:noaUUID
+      \ .'\", \"roomid\":\"'.g:noaRoomID
+      \.'\"}"'
 
-   for i in l:bufferText
-      let l:linkBufText = l:linkBufText.','.'\"'.i.'\"'
-   endfor
-
-   let l:linkBufText = l:linkBufText.',\"EOF\"]'
-
-   echo l:linkBufText
-
-
-   let l:cmdStr = 'curl '.g:serverURL.'/send'.' -X POST -H "Content-Type: application/json" -d "{\"text\": '.l:linkBufText.', \"line\":2, \"uuid\":\"'.g:noaUUID.'\", \"roomid\": \"'.g:noaRoomID.'\"}"'
-   let res = system(l:cmdStr)
+   call system(l:sendCmd)
 endfunction
-
-
