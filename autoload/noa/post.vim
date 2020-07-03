@@ -11,15 +11,19 @@ endfunction
 function! noa#post#sendBufferText() abort
    let l:fileText = noa#gettext#getBufferText()
 
+   let l:lineNum = line('.')
+
+   let l:data =
+      \ '"{'
+         \ .'\"text\"   : '.l:fileText.', '
+         \ .'\"line\"   : '.l:lineNum.', '
+         \ .'\"uuid\"   : \"'.g:noaUUID.'\", '
+         \ .'\"roomid\" : \"'.g:noaRoomID.'\"'
+      \.'}"'
+
    let l:sendCmd = 'curl '.g:serverURL.'/send '
       \ .'-X POST -H "Content-Type: application/json" '
-      \ .'-d '
-      \ .'"{'
-      \ .'\"text\":'.l:fileText
-      \ .', \"line\":2,'
-      \ .' \"uuid\":\"'.g:noaUUID
-      \ .'\", \"roomid\":\"'.g:noaRoomID
-      \.'\"}"'
+      \ .'-d '.l:data
 
    call system(l:sendCmd)
 endfunction
