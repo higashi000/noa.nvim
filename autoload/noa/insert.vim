@@ -3,10 +3,17 @@ function! noa#insert#insertText(recvJSON) abort
    let s:J = s:V.import('Web.JSON')
 
    let textData = s:J.decode(a:recvJSON)
-   echo textData['line']
 
-   echo textData['text'][1]
+   let l:nowBuffLen = line('$')
+
+   if (l:nowBuffLen - len(textData['text']) > 0)
+      for i in range(l:nowBuffLen - len(textData['text']))
+         execute ':normal dd'
+      endfor
+   endif
+
    if (textData['uuid'] != g:noaUUID)
-      call append(textData['line'] - 1, textData['text'][1])
+      call setline(1, textData['text'])
+"      call append(textData['line'] - 1, textData['text'][1])
    endif
 endfunction
