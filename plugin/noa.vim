@@ -20,6 +20,7 @@ endfunction
 augroup NoaInput
    autocmd!
    autocmd InsertLeave * call noa#post#sendBufferText()
+   autocmd TextChanged * call noa#post#sendBufferText()
 augroup END
 
 let &cpo = s:save_cpo
