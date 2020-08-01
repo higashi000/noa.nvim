@@ -11,9 +11,11 @@ let g:noaUUID = ''
 let g:noaRoomID = ''
 
 command! NoaPostMsg call noa#postMsg()
+command! NoaStart call noa#start()
 
-function! noa#start(roomid) abort
-   call NoaCreateConn(a:roomid)
+function! noa#start() abort
+   let l:roomid = input('roomid:')
+   call NoaCreateConn(l:roomid)
    call NoaWSRECV()
 endfunction
 
