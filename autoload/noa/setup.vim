@@ -9,7 +9,9 @@ function! noa#setup#InitClient() abort
    let g:noaUUID = recvData["uuid"]
    let g:noaFileType = recvData["filetype"]
 
-   if len(recvData['text']) != 0
+   echo recvData['text']
+
+   if len(recvData['text']) != 1 && recvData['text'][0] != '0'
       call setline(1, recvData['text'])
    endif
 endfunction
