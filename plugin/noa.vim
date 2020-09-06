@@ -8,6 +8,7 @@ set cpo&vim
 
 let g:serverURL = 'http://localhost:5000'
 let g:noaUUID = ''
+let g:noaFileType = ''
 let g:noaRoomID = ''
 
 command! NoaPostMsg call noa#postMsg()

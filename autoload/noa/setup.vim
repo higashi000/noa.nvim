@@ -7,6 +7,7 @@ function! noa#setup#InitClient() abort
    let recvData = s:J.decode(res)
 
    let g:noaUUID = recvData["uuid"]
+   let g:noaFileType = recvData["filetype"]
 
    if len(recvData['text']) != 0
       call setline(1, recvData['text'])
