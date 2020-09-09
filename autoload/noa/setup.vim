@@ -6,8 +6,13 @@ function! noa#setup#InitClient() abort
 
    let recvData = s:J.decode(res)
 
-   let g:noaUUID = recvData["uuid"]
-   let g:noaFileType = recvData["filetype"]
+   let g:noaUUID = recvData['uuid']
+   let g:noaFileType = recvData['filetype']
+
+   let l:fileName = g:noaRoomID.'.'.g:noaFileType
+
+   e l:fileName
+   execute ':edit' l:fileName
 
    echo recvData['text']
 
