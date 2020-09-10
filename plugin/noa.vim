@@ -10,6 +10,7 @@ let g:serverURL = 'http://localhost:5000'
 let g:noaUUID = ''
 let g:noaFileType = ''
 let g:noaRoomID = ''
+let g:noaWindowID = ''
 
 command! NoaPostMsg call noa#postMsg()
 command! NoaStart call noa#start()

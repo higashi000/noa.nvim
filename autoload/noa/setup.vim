@@ -14,6 +14,8 @@ function! noa#setup#InitClient() abort
    e l:fileName
    execute ':edit' l:fileName
 
+   let g:noaWindowID = win_getid()
+
    echo recvData['text']
 
    if len(recvData['text']) != 1 && recvData['text'][0] != '0'
