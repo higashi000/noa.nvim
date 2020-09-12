@@ -14,12 +14,12 @@ function! noa#post#sendBufferText() abort
    let l:lineNum = line('.')
 
    let l:data =
-      \ '"{'
-         \ .'\"text\"   : '.l:fileText.', '
-         \ .'\"line\"   : '.l:lineNum.', '
-         \ .'\"uuid\"   : \"'.g:noaUUID.'\", '
-         \ .'\"roomid\" : \"'.g:noaRoomID.'\"'
-      \.'}"'
+      \ "'{"
+         \ .'"text"   : '.l:fileText.', '
+         \ .'"line"   : '.l:lineNum.', '
+         \ .'"uuid"   : "'.g:noaUUID.'", '
+         \ .'"roomid" : "'.g:noaRoomID.'"'
+      \."}'"
 
    let l:sendCmd = 'curl '.g:serverURL.'/send '
       \ .'-X POST -H "Content-Type: application/json" '
