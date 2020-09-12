@@ -21,11 +21,5 @@ function! noa#start() abort
    call NoaWSRECV()
 endfunction
 
-augroup NoaInput
-   autocmd!
-   autocmd TextChanged * call noa#post#sendBufferText()
-   autocmd TextChangedI * call noa#post#sendBufferText()
-augroup END
-
 let &cpo = s:save_cpo
 unlet s:save_cpo

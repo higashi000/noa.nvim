@@ -1,4 +1,12 @@
 function! noa#setup#InitClient() abort
+   augroup NoaInput
+      autocmd!
+      autocmd TextChanged * call noa#post#sendBufferText()
+      autocmd TextChangedI * call noa#post#sendBufferText()
+   augroup END
+
+
+
    let res = system('curl -s "'.g:serverURL.'/init?roomid='.g:noaRoomID.'"')
 
    let s:V = vital#noa#new()
