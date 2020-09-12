@@ -14,6 +14,5 @@ function! noa#insert#insertText(recvJSON) abort
 
    if (textData['uuid'] != g:noaUUID)
       call setline(1, textData['text'])
-"      call append(textData['line'] - 1, textData['text'][1])
    endif
 endfunction
