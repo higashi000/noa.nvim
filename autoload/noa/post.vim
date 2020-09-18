@@ -2,7 +2,7 @@ function! noa#post#postMsg() abort
    let l:cursorPos = line(".")
    let l:lineText = getline('.')
 
-   let l:cmdStr = 'curl '.g:serverURL.'/send'.' -X POST -H "Content-Type: application/json" -d "{\"text\": \"'.l:lineText.'\", \"line\":'.l:cursorPos.', \"uuid\":\"'.g:noaUUID.'\", \"roomid\": \"'.g:noaRoomID.'\"}"'
+   let l:cmdStr = 'curl '.g:noa#serverURL.'/send'.' -X POST -H "Content-Type: application/json" -d "{\"text\": \"'.l:lineText.'\", \"line\":'.l:cursorPos.', \"uuid\":\"'.g:noa#UUID.'\", \"roomid\": \"'.g:noa#RoomID.'\"}"'
    echo l:cmdStr
 
    let res = system(l:cmdStr)
@@ -17,11 +17,11 @@ function! noa#post#sendBufferText() abort
       \ "'{"
          \ .'"text"   : '.l:fileText.', '
          \ .'"line"   : '.l:lineNum.', '
-         \ .'"uuid"   : "'.g:noaUUID.'", '
-         \ .'"roomid" : "'.g:noaRoomID.'"'
+         \ .'"uuid"   : "'.g:noa#UUID.'", '
+         \ .'"roomid" : "'.g:noa#RoomID.'"'
       \."}'"
 
-   let l:sendCmd = 'curl '.g:serverURL.'/send '
+   let l:sendCmd = 'curl '.g:noa#serverURL.'/send '
       \ .'-X POST -H "Content-Type: application/json" '
       \ .'-d '.l:data
 

@@ -7,22 +7,22 @@ function! noa#setup#InitClient() abort
 
 
 
-   let res = system('curl -s "'.g:serverURL.'/init?roomid='.g:noaRoomID.'"')
+   let res = system('curl -s "'.g:noa#serverURL.'/init?roomid='.g:noa#RoomID.'"')
 
    let s:V = vital#noa#new()
    let s:J = s:V.import('Web.JSON')
 
    let recvData = s:J.decode(res)
 
-   let g:noaUUID = recvData['uuid']
-   let g:noaFileType = recvData['filetype']
+   let g:noa#UUID = recvData['uuid']
+   let g:noa#FileType = recvData['filetype']
 
-   let l:fileName = g:noaRoomID.'.'.g:noaFileType
+   let l:fileName = g:noa#RoomID.'.'.g:noa#FileType
 
    e l:fileName
    execute ':edit' l:fileName
 
-   let g:noaWindowID = win_getid()
+   let g:noa#WindowID = win_getid()
 
    echo recvData['text']
 
@@ -32,5 +32,5 @@ function! noa#setup#InitClient() abort
 endfunction
 
 function! noa#setup#setRoomID(roomID) abort
-    let g:noaRoomID = a:roomID
+    let g:noa#RoomID = a:roomID
 endfunction

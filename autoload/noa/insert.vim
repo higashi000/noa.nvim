@@ -19,7 +19,7 @@ function! noa#insert#insertText(recvJSON) abort
       let l:index = l:index + 1
    endfor
 
-   if (textData['uuid'] != g:noaUUID)
+   if (textData['uuid'] != g:noa#UUID)
       call setline(1, textData['text'])
    endif
 endfunction

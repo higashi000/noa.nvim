@@ -6,11 +6,11 @@ let g:loaded_noa = 1
 let s:save_cpo = &cpo
 set cpo&vim
 
-let g:serverURL = 'http://localhost:5000'
-let g:noaUUID = ''
-let g:noaFileType = ''
-let g:noaRoomID = ''
-let g:noaWindowID = ''
+let g:noa#serverURL = 'http://localhost:5000'
+let g:noa#UUID = ''
+let g:noa#FileType = ''
+let g:noa#RoomID = ''
+let g:noa#WindowID = ''
 
 command! NoaPostMsg call noa#postMsg()
 command! NoaStart call noa#start()
