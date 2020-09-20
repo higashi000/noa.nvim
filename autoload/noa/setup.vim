@@ -1,11 +1,15 @@
-function! noa#setup#InitClient() abort
+function! noa#setup#noaaugroup() abort
    augroup NoaInput
       autocmd!
       autocmd TextChanged * call noa#post#sendBufferText()
       autocmd TextChangedI * call noa#post#sendBufferText()
    augroup END
+endfunction
 
-
+function! noa#setup#InitClient() abort
+   if !exists('#NoaInput#TextChanged')
+      call noa#setup#noaaugroup()
+   endif
 
    let res = system('curl -s "'.g:noa#serverURL.'/init?roomid='.g:noa#RoomID.'"')
 
