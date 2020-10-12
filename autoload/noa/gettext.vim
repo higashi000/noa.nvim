@@ -7,8 +7,8 @@ function! noa#gettext#getBufferText() abort
 
    let cnt = 0
    for i in l:bufferText
-      let l:replaceText = substitute(i, '"', '”', 'g')
-      let l:replaceText = substitute(l:replaceText, "'", "’", 'g')
+      let l:replaceText = substitute(i, '"', '@”', 'g')
+      let l:replaceText = substitute(l:replaceText, "'", "@’", 'g')
       if (cnt == l:fileLineLen - 1)
          let l:linkBuffText = l:linkBuffText.'"'.l:replaceText.'"'
       else

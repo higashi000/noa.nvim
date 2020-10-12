@@ -14,8 +14,8 @@ function! noa#insert#insertText(recvJSON) abort
 
    let l:index = 0
    for i in textData['text']
-      let textData['text'][l:index] = substitute(i, '”', '"', 'g')
-      let textData['text'][l:index] = substitute(textData['text'][l:index], '’', "'", 'g')
+      let textData['text'][l:index] = substitute(i, '@”', '"', 'g')
+      let textData['text'][l:index] = substitute(textData['text'][l:index], '@’', "'", 'g')
       let l:index = l:index + 1
    endfor
 
